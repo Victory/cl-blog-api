@@ -37,20 +37,30 @@ class Db {
   }
 
   /** Get data object from the database */
-  public async getObject<T extends ValueType>(key: string): Promise<T> {
+  public async getObject<T extends ValueType>(key: string): Promise<T | null> {
     await Db.slow();
     const d = this.data[key] as T;
     return d;
   }
 
-  /** Get data list objects from the database that have key with the prefix `keyPrefix` */
-  public async getObjects<T extends ValueType>(keyPrefix: string): Promise<T[]> {
+  /**
+   * Get data list objects from the database that have key with the prefix
+   * `keyPrefix`. Optionally filter by `filterPredicate`.
+   */
+  public async getObjects<T extends ValueType>({
+    keyPrefix,
+    filterPredicate,
+  }: {
+    keyPrefix: string,
+    filterPredicate?: (t: T) => boolean,
+  }): Promise<T[]> {
     await Db.slow();
+
     const d: T[] = Object.keys(this.data)
       .filter((kk: string) => kk.startsWith(keyPrefix))
       .map((kk: string) => this.data[kk] as T);
 
-    return d;
+    return (filterPredicate) ? d.filter(filterPredicate) : d;
   }
 
   /** Simulate network and database wait time */

@@ -3,11 +3,11 @@ export default class ModelUtil {
   private static salt = Date.now();
 
   /**
-   * Generate a unique and hard to guess nounce.
+   * Generate a unique and hard to guess nounce slug.
    *
    * Can generate at most one per microsecond
    */
-  public static async newNouce(): Promise<string> {
+  public static async newSlug(): Promise<string> {
     // generates a new salt every microsecond
     this.salt = await new Promise((res) => {
       const interval = setInterval(() => {
@@ -19,6 +19,11 @@ export default class ModelUtil {
       }, 0);
     });
 
-    return this.salt.toString(10);
+    const rand = Math.floor(Math.random() * 1e9).toString(16);
+    return this.salt.toString(16) + rand;
+  }
+
+  public static isValidSlug(slug: string) {
+    return slug.match(/^[A-Za-z0-9]+$/);
   }
 }
