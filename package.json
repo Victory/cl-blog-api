@@ -1,0 +1,35 @@
+{
+  "name": "cl-blog-api",
+  "version": "1.0.0",
+  "description": "CL Blog RESTful API",
+  "scripts": {
+    "test": "npm run test",
+    "build": "npm run lint && npx tsc",
+    "serve": "npm run build && node dist/app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victory/cl-blog-api.git"
+  },
+  "keywords": [
+    "restful",
+    "blog",
+    "api"
+  ],
+  "author": "Victory",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Victory/cl-blog-api/issues"
+  },
+  "homepage": "https://github.com/Victory/cl-blog-api#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-plugin-import": "^2.25.4",
+    "typescript": "^4.5.5"
+  }
+}
