@@ -1,10 +1,11 @@
+import { AuthoredModel } from '../AuthoredModel';
 import BlogPostView from './BlogPostView';
 
 /** Blog post model */
-export default class BlogPostModel {
+export default class BlogPostModel implements AuthoredModel {
   public readonly title: string;
 
-  public readonly authorSlug: string;
+  public readonly authorName: string;
 
   public readonly content: string;
 
@@ -22,7 +23,7 @@ export default class BlogPostModel {
 
   private constructor({
     title,
-    authorSlug,
+    authorName,
     content,
     dateCreated,
     dateLastModified,
@@ -30,7 +31,7 @@ export default class BlogPostModel {
     slug,
   }: {
     title: string
-    authorSlug: string,
+    authorName: string,
     content: string,
     dateCreated: number,
     dateLastModified: number,
@@ -38,7 +39,7 @@ export default class BlogPostModel {
     slug: string,
   }) {
     this.title = title;
-    this.authorSlug = authorSlug;
+    this.authorName = authorName;
     this.content = content;
     this.dateCreated = dateCreated;
     this.dateLastModified = dateLastModified;
@@ -49,12 +50,12 @@ export default class BlogPostModel {
   /** For creating a new blog */
   public static forPost({
     title,
-    authorSlug,
+    authorName,
     content,
     slug,
   }: {
     title: string
-    authorSlug: string,
+    authorName: string,
     content: string,
     slug: string,
   }): BlogPostView {
@@ -64,7 +65,7 @@ export default class BlogPostModel {
     const dateLastModified = dateCreated;
     const model = new BlogPostModel({
       title,
-      authorSlug,
+      authorName,
       content,
       dateCreated,
       dateLastModified,
@@ -78,7 +79,7 @@ export default class BlogPostModel {
   /** For reading blog */
   public static forGet({
     title,
-    authorSlug,
+    authorName,
     content,
     dateCreated,
     dateLastModified,
@@ -86,7 +87,7 @@ export default class BlogPostModel {
     slug,
   }: {
     title: string
-    authorSlug: string,
+    authorName: string,
     content: string,
     dateCreated: number,
     dateLastModified: number,
@@ -95,7 +96,7 @@ export default class BlogPostModel {
   }): BlogPostView {
     const model = new BlogPostModel({
       title,
-      authorSlug,
+      authorName,
       content,
       dateCreated,
       dateLastModified,
@@ -110,7 +111,7 @@ export default class BlogPostModel {
   public static forDelete(blogToDelete: BlogPostView): BlogPostView {
     const model = new BlogPostModel({
       title: '[deleted]',
-      authorSlug: '[deleted]',
+      authorName: '[deleted]',
       content: '[deleted]',
       dateCreated: blogToDelete.dateCreated,
       dateLastModified: Date.now(),
@@ -125,20 +126,20 @@ export default class BlogPostModel {
   public static forPut({
     title,
     content,
-    curView,
+    curBlog,
   }: {
     title: string
     content: string,
-    curView: BlogPostView
+    curBlog: BlogPostView
   }): BlogPostView {
     const model = new BlogPostModel({
       title,
       content,
-      authorSlug: curView.authorSlug,
-      dateCreated: curView.dateCreated,
+      authorName: curBlog.authorName,
+      dateCreated: curBlog.dateCreated,
       dateLastModified: Date.now(),
-      path: curView.path,
-      slug: curView.slug,
+      path: curBlog.path,
+      slug: curBlog.slug,
     });
 
     return model;

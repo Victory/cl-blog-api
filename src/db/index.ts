@@ -1,8 +1,9 @@
 import BlogPostModel from '../model/blogs/BlogPostModel';
+import CommentModel from '../model/comments/CommentModel';
 import UserModel from '../model/user/UserModel';
 import UserPublicModel from '../model/user/UserPublicModel';
 
-type ValueType = BlogPostModel | UserModel | UserPublicModel;
+type ValueType = BlogPostModel | UserModel | UserPublicModel | CommentModel;
 
 /** Simulate a persitence layer database */
 class Db {

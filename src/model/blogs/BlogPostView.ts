@@ -2,8 +2,8 @@
 type BlogPostView = {
   /** blog title */
   title: string;
-  /** Author's user slug of the blog */
-  authorSlug: string;
+  /** Author's user name */
+  authorName: string;
   /** blog content */
   content: string;
   /** UTC timestamp `Date.now()` for when the post was created */

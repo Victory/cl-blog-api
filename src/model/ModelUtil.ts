@@ -3,6 +3,12 @@ export default class ModelUtil {
   private static salt = Date.now();
 
   /**
+   * Globablly increasing number using for pagination. TODOD should be
+   * intialized form the DB on startup
+   */
+  private static globalIndex = 0;
+
+  /**
    * Generate a unique and hard to guess nounce slug.
    *
    * Can generate at most one per microsecond
@@ -25,5 +31,11 @@ export default class ModelUtil {
 
   public static isValidSlug(slug: string) {
     return slug.match(/^[A-Za-z0-9]+$/);
+  }
+
+  /** Get a globally increasing number */
+  public static getIndex(): number {
+    ModelUtil.globalIndex += 1;
+    return ModelUtil.globalIndex;
   }
 }

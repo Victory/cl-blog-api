@@ -1,11 +1,33 @@
 import express from 'express';
 import db from '../db';
+import { AuthoredModel } from '../model/AuthoredModel';
 import UserInternalModel from '../model/user/UserInternalModel';
 import UserModel from '../model/user/UserModel';
 import UserPublicModel from '../model/user/UserPublicModel';
 
 export default class Authorization {
-  /** Return true if the user is authorized */
+  /** Return true if authorized modified/delete the model */
+  public static async isAuthorizedToModified({
+    req,
+    res,
+    model,
+  }: {
+    req: express.Request,
+    res: express.Response
+    model: AuthoredModel
+  }): Promise<UserPublicModel | null> {
+    const user = await Authorization.getUserFromRequest(req);
+
+    if (user && user.name === model.authorName) {
+      return user;
+    }
+
+    res.statusCode = 401;
+    res.send({ isAuthorized: false });
+    return null;
+  }
+
+  /** Return true if the user is authorized to post or get */
   public static async isAuthorized({
     req,
     res,
@@ -13,7 +35,7 @@ export default class Authorization {
   }: {
     req: express.Request,
     res: express.Response
-    action: 'post' | 'put' | 'delete' | 'get'
+    action: 'get' | 'post'
   }): Promise<UserPublicModel | null> {
     const user = await Authorization.getUserFromRequest(req);
     if (action === 'get') {

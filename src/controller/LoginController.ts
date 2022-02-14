@@ -8,6 +8,7 @@ import Authorization from './Authorization';
 import UserCrendtials from './transport/UserCredentials';
 
 export default class LoginController {
+  /** Log in the user */
   public static async login(req: express.Request, res: express.Response) {
     const creds: UserCrendtials = req.body;
     try {
