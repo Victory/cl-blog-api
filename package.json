@@ -4,7 +4,7 @@
   "description": "CL Blog RESTful API",
   "scripts": {
     "test": "npx ts-mocha --paths -p tsconfig.json test/*.spec.ts",
-    "build": "rm -r dist/* && npm run lint && npx tsc",
+    "build": "rm -r dist/*; npm run lint && npx tsc",
     "serve": "npm run build && node dist/src/app.js",
     "lint": "npx eslint ."
   },
@@ -35,6 +35,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-plugin-import": "^2.25.4",
+    "mocha": "^9.2.0",
     "ts-mocha": "^9.0.2",
     "typescript": "^4.5.5"
   },
