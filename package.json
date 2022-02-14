@@ -4,9 +4,10 @@
   "description": "CL Blog RESTful API",
   "scripts": {
     "test": "npx ts-mocha --paths -p tsconfig.json test/*.spec.ts",
-    "build": "rm -r dist/*; npm run lint && npx tsc",
+    "build": "rm -r dist/*; npm run lint && npm run tsc",
     "serve": "npm run build && node dist/src/app.js",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "tsc": "npx tsc"
   },
   "repository": {
     "type": "git",

@@ -70,6 +70,14 @@ To build
 npm run build
 ```
 
+If running on Windows you may run each of the build commands manually after
+optionally deleting the `dist` dir.
+
+```sh
+npm run lint
+npm run tsc
+```
+
 To run
 ```sh
 node dist/src/app.js
