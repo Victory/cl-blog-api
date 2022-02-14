@@ -38,7 +38,33 @@ To test
 npm run test
 ```
 
-The build directory is located in `dist/`
+Which should give something like
+```
+Starting server
+  CL Blog API
+     App listening on http://localhost:7777 !
+    ✔ Server is started (1096ms)
+    ✔ Server is running version 1.0
+    ✔ Gets bearer token for correct password. POST: http://localhost:7777/login (48ms)
+    ✔ Does not get bearer token for username with illegal chars: http://localhost:7777/login
+    ✔ Does not get bearer token for incorrect password and status code is set to 401. POST: http://localhost:7777/login
+    ✔ Can logout user GET: http://localhost:7777/logout (88ms)
+    ✔ POST a blog as a logged in user: http://localhost:7777/blog (153ms)
+    ✔ Get all blogs: http://localhost:7777/blogs
+    ✔ Get a single blog: http://localhost:7777/blogs (46ms)
+    ✔ Can update a blog: PUT http://localhost:7777/blogs (246ms)
+    ✔ Sanatizes HTML from title and body blog: POST/PUT http://localhost:7777/blogs (264ms)
+    ✔ Delete a blog as a logged in user DELETE: http://localhost:7777/blog (294ms)
+    ✔ Get top level comments (56ms)
+    ✔ Get nested comments (71ms)
+    ✔ Post a comment (289ms)
+    ✔ Delete a comment (284ms)
+Shutting down app gracefully.
+
+```
+
+The build directory is located in `dist/`.
+
 To build
 ```sh
 npm run build
