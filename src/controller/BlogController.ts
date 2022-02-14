@@ -39,8 +39,12 @@ export default class BlogController {
     if (!ModelUtil.isValidSlug(slug)) {
       return null;
     }
-    const blog = BlogPostModel.forGet(await db.getObject(`blogs/${slug}`));
-    return blog || null;
+    const blogBlob = await db.getObject<BlogPostView>(`blogs/${slug}`);
+    if (!blogBlob) {
+      return null;
+    }
+
+    return BlogPostModel.forGet(blogBlob);
   }
 
   /** Post a blog post, requires user is logged in. */
