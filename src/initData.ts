@@ -22,6 +22,11 @@ const initData = async () => {
       bearerToken: '',
       password: CryptoUtil.encrypt('Eve123'),
     }),
+    UserModel.asInternal({
+      name: 'Scott',
+      bearerToken: '',
+      password: CryptoUtil.encrypt('Scott123'),
+    }),
   ];
 
   // Persists a user model
@@ -68,7 +73,7 @@ const initData = async () => {
       }),
     ),
     CommentModel.forPost({
-      authorName: 'Guest',
+      authorName: 'Scott',
       blogSlug: blogs[0].slug,
       content: `I will reply to Nice post about ${blogs[0].title}`,
       globalIndex: ModelUtil.getIndex(),
@@ -77,7 +82,7 @@ const initData = async () => {
     }),
     CommentModel.forMarkAsHashChildren(
       CommentModel.forPost({
-        authorName: 'Guest',
+        authorName: 'Scott',
         blogSlug: blogs[0].slug,
         content: `I will reply to Nice post about ${blogs[0].title}`,
         globalIndex: ModelUtil.getIndex(),
@@ -86,7 +91,7 @@ const initData = async () => {
       }),
     ),
     CommentModel.forPost({
-      authorName: 'Guest',
+      authorName: 'Scott',
       blogSlug: blogs[0].slug,
       content: `I reply to your reply to Nice post about ${blogs[0].title}`,
       globalIndex: ModelUtil.getIndex(),
@@ -102,7 +107,7 @@ const initData = async () => {
       slug: await ModelUtil.newSlug(),
     }),
     CommentModel.forPost({
-      authorName: 'Guest',
+      authorName: 'Scott',
       blogSlug: blogs[0].slug,
       content: `I am a guest but i wanted to talk about ${blogs[0].title}`,
       globalIndex: ModelUtil.getIndex(),

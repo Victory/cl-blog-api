@@ -12,9 +12,14 @@ export default class CommentsController {
     const { blogSlug, parentSlug } = req.params;
     const user = await Authorization.isAuthorized({
       req,
-      res,
       action: 'post',
     });
+
+    if (!user) {
+      res.statusCode = 401;
+      res.send({ isAuthorized: false });
+      return;
+    }
 
     const { content } = req.body;
     if (!content) {

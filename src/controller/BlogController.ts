@@ -47,7 +47,6 @@ export default class BlogController {
   public static async post(req: express.Request, res: express.Response) {
     const user = await Authorization.isAuthorized({
       req,
-      res,
       action: 'post',
     });
     if (!user) {

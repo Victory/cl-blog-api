@@ -458,7 +458,7 @@ try {
       expect(childComments).length.greaterThan(0);
     });
 
-    it('Post a comments', async () => {
+    it('Post a comment', async () => {
       const loginBody = JSON.stringify({
         userName: 'Bob',
         password: 'Bob123',
@@ -517,7 +517,7 @@ try {
       expect(replyCommentView.content).equals('my reply');
     });
 
-    it('Delete a comments', async () => {
+    it('Delete a comment', async () => {
       const loginBody = JSON.stringify({
         userName: 'Bob',
         password: 'Bob123',

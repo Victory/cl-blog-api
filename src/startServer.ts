@@ -37,7 +37,7 @@ const startServer = (port: number): Server => {
 
   // Launch listening server on port
   const server = app.listen(port, () => {
-    CSLogger.log(`     App listening on https://localhost:${port}!`);
+    CSLogger.log(`     App listening on http://localhost:${port} !`);
   });
 
   return server;

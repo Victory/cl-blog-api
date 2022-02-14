@@ -27,14 +27,12 @@ export default class Authorization {
     return null;
   }
 
-  /** Return true if the user is authorized to post or get */
+  /** Return the user is authorized to post or get. Else return null */
   public static async isAuthorized({
     req,
-    res,
     action,
   }: {
     req: express.Request,
-    res: express.Response
     action: 'get' | 'post'
   }): Promise<UserPublicModel | null> {
     const user = await Authorization.getUserFromRequest(req);
@@ -46,8 +44,6 @@ export default class Authorization {
       return user;
     }
 
-    res.statusCode = 401;
-    res.send({ isAuthorized: false });
     return null;
   }
 
